@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 
 export default function Quiz() {
 
-  const state = useSelector(state => state)
+  const result = useSelector(state => state.result.result)
 
   useEffect(() => {
-    console.log(state)
+    // console.log(state)
   })
 
   /** Prev button event handler */
