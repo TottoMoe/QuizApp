@@ -22,7 +22,6 @@ export default function Quiz() {
 
   /** Prev button event handler */
   function onPrev() {
-    console.log('On Prev Click')
     if (trace > 0) {
       /** update the trace value by one using MovePrevAction */
       dispatch(MovePrevQuestion());
@@ -33,7 +32,6 @@ export default function Quiz() {
   /** Next button event handler */
   function onNext() {
     console.log('On Next Click')
-
     if (trace < queue.length) {
       /** update the trace value by one using MoveNextAction */
       dispatch(MoveNextQuestion());
@@ -42,8 +40,10 @@ export default function Quiz() {
       if (result.length <= trace) {
         dispatch(PushAnswer(check))
       }
-
     }
+
+    /** rest the value of the checked variable */
+    setChecked(undefined)
   }
 
   function onChecked(check) {
@@ -65,7 +65,7 @@ export default function Quiz() {
 
       {/* Navigation Buttons */}
       <div className='grid'>
-        <button className='btn prev' onClick={onPrev}>Prev</button>
+        { trace > 0 ? <button className='btn prev' onClick={onPrev}>Prev</button> : <div></div>}
         <button className='btn next' onClick={onNext}>Next</button>
       </div>
     </div>

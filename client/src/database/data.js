@@ -6,8 +6,8 @@ export default [
   },
   {
     id: 2,
-    question: "What is the capital of Ireland?",
-    options: ["New York", "London", "Paris"],
+    question: "What is the capital of China?",
+    options: ["Bei Jing", "London", "Paris"],
   },
   {
     id: 3,
@@ -22,6 +22,8 @@ export default [
   {
     id: 5,
     question: "What is the capital of Japan?",
-    options: ["New York", "London", "Washington DC"],
+    options: ["New York", "London", "Tokyo"],
   },
 ];
+
+export const answers = [2, 1, 0, 2, 2];
