@@ -23,7 +23,6 @@ export async function insertQuestions(req, res) {
     });
 }
 
-
 /** deleta all questions */
 export async function dropQuestions(req, res) {
   Questions.deleteMany()
@@ -38,25 +37,35 @@ export async function dropQuestions(req, res) {
 /** get all result */
 export async function getResult(req, res) {
   try {
-    res.json("Result api Get Request");
+    const r = await Results.find();
+    res.json(r);
   } catch (error) {
-    res.json(error);
+    res.json({error});
   }
 }
 
 /** post all result */
 export async function storeResult(req, res) {
-  try {
-    res.json("Result api Store(post) Request");
-  } catch (error) {
-    res.json(error);
-  }
+  
+    const { username, result, attempts, points, achived } = req.body;
+    if (!username && !result) throw new Error("Data Not Provided...!");
+
+    Results.create(
+      { username, result, attempts, points, achived })
+      .then (function (err, data) {
+        res.json({ msg: "Result Saved Successfully...!" });
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  
 }
 
 /** delete all resport */
 export async function dropResult(req, res) {
   try {
-    res.json("Result api Drop(delete) Request");
+    await Results.deleteMany();
+    res.json({ msg : "Result api Drop(delete) Request"});
   } catch (error) {
     res.json(error);
   }
